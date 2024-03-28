@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partial/header.ejs') %>
+<body>
+  <%- include('./partial/navbar.ejs') %>
+  <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="/loginform" class="btn btn-success">Login</a><br>
+        <a href="/signupform" class="btn btn-success">Signup</a>
+        </div>
+    <%if(data =="signupform"){%>
+    <div class="container">
+      <h3><%=myMsg  %> </h3>
+        <form  action="/signup" method="post" onsubmit="return validateForm()">
+            <div class="mb-3">
+               <label for="uname" class="form-label">User Name</label>
+               <input type="text" class="form-control" id="uname" name="uname">
+              
+             </div>
+           <div class="mb-3" >
+             <label for="pwd" class="form-label">Password</label>
+             <input type="password" class="form-control" id="pwd"  name="pwd">
+           </div>
+           <div class="mb-3" >
+               <label for="rpass" class="form-label">Repeat Password</label>
+               <input type="password" class="form-control" id="rpass"  name="pwd1">
+           </div>
+           <div class="mb-3" >
+            <label for="utype" class="form-label">User Type</label>
+               <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="utype" name="utype">
+                   <option selected>Open this select menu</option>
+                   <option value="driver">Driver</option>
+                   <option value="examiner">Examiner</option>
+                   <option value="admin">Admin</option>
+               </select>
+           </div>
+           
+           <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+    </div>
+    <% } %>
+    <% if(data == "loginform"){ %>
+        <div class="container">
+          <h3><%=myMsg  %> </h3>
+            <form  action="/login" method="post" onsubmit="return validateForm2()">
+                <div class="mb-3">
+                   <label for="uname" class="form-label">User Name</label>
+                   <input type="text" class="form-control" id="uname1" name="uname">
+                  
+                 </div>
+               <div class="mb-3" >
+                 <label for="upass" class="form-label">Password</label>
+                 <input type="password" class="form-control" id="upass1"  name="pwd">
+               </div>
+               
+               <button type="submit" class="btn btn-primary">Submit</button>
+             </form>
+        </div>
+    <% } %>
+    <script>
+      function validateForm() {
+          var uname = document.getElementById('uname').value;
+          var pwd = document.getElementById('pwd').value;
+          var rpass = document.getElementById('rpass').value;
+          var utype = document.getElementById('utype').value;
+  
+          if (uname.trim() == '' || pwd.trim() == '' || rpass.trim() == '' || utype.trim() == '') {
+              alert('All fields must be filled out');
+              return false;
+          }
+  
+          if (pwd !== rpass) {
+              alert('Passwords do not match');
+              return false;
+          }
+  
+          return true;
+      }
+      function validateForm2() {
+          var uname = document.getElementById('uname1').value;
+          var pwd = document.getElementById('upass1').value;
+  
+          if (uname.trim() == '' || pwd.trim() == '') {
+              alert('All fields must be filled out');
+              console.log("running validateform2()")
+              return false;
+          }
+  
+          return true;
+      }
+  </script>
+</body>
+</html>

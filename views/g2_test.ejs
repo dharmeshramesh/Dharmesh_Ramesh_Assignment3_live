@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partial/header.ejs') %>
+<body>
+    <%- include('./partial/navbar.ejs') %>   
+      
+      <div class="container">
+      <% if(user1.licenceno ==""){ %>
+        <h2>G2_test form</h2>
+      <form class="form-horizontal" action="/insert" method="post" onsubmit="return validateForm()">
+        <%let x=[["First Name","Last Name","Licence Number","Age"],["Make","Model","Year","Plate Number"]]
+        let y=[["fname","lname","licence","age"],["Make","Model","Year","PlateNumber"]]
+        let z=["Car information","personel information"] %>
+      <% for (let k = 0; k < z.length; k++) { %>
+        <h2><%=z[k] %></h2>
+        <% for (let i = 0; i < x[k].length; i++) { %>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="<% x[k][i] %>"><%=x[k][i] %>:</label>
+                <input type="text" class="form-control" id="<%= y[k][i] %>"  name="<%= y[k][i] %>" placeholder= "Enter <%=x[k][i] %>" >
+              </div>
+        <% } %>
+          <br> 
+      <% } %>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+      <% }else{ %>
+        <h2>G2_test</h2>
+        <table class="table table-striped table-success" >
+          <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Licence</th>
+              <th>Age</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Year</th>
+              <th>Plate Number</th>
+           <!--   <th>Edit</th>-->
+          </tr>
+           
+            <tr>
+              <td><%= user1.firstname       %></td>
+      
+              <td><%= user1.lastname      %></td>
+      
+              <td><%= user1.licenceno      %></td>
+      
+              <td><%= user1.age      %></td>
+      
+              <td><%= user1.car_details.make       %></td>
+      
+              <td><%= user1.car_details.model       %></td>
+
+              <td><%= user1.car_details.year       %></td>
+
+              <td><%= user1.car_details.plateno       %></td>
+
+             <!--<td><a class="btn btn-primary" href="/edit/<%= user1.licenceno %>" role="button">Edit</a></td>--> 
+            </tr>
+          </table>
+      <% } %>
+        
+      </div>
+      <script>
+        function validateForm() {
+          ["fname","lname","licence","age"],["Make","Model","Year","PlateNumber"]
+            var fname = document.getElementById('fname').value;
+            var lname = document.getElementById('lname').value;
+            var licence = document.getElementById('licence').value;
+            var age = document.getElementById('age').value;
+            var Make= document.getElementById('Make').value;
+            var Model= document.getElementById('Model').value;
+            var Year= document.getElementById('Year').value;
+            var PlateNumber= document.getElementById('PlateNumber').value;
+    
+            if (fname.trim() == '' || lname.trim() == '' || licence.trim() == '' || age.trim() == '' 
+                 || Make.trim() == '' || Model.trim() == '' || Year.trim() == '' || PlateNumber.trim() == '') {
+                alert('All fields must be filled out');
+                return false;
+            }
+    
+            if (licence.length<=5) {
+                alert('licence number length should be atleast 5');
+                return false;
+            }
+    
+            return true;
+        }
+    </script>
+</body>
+</html>
