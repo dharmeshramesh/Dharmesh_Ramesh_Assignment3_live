@@ -30,7 +30,7 @@ app.use(express.static('public'));
 
 //const user=require('./models/userModel.js')
 
-const uri = "mongodb+srv://dharmeshwayne:mB5ud4buFCiKElbu@cluster0.bqcmuyb.mongodb.net/Dharmesh_assignment?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://dharmeshwayne:mB5ud4buFCiKElbu@cluster0.bqcmuyb.mongodb.net/Dharmesh_assignment?retryWrites=true&w=majority";
 
 const session_store = MongoStore.create({
     mongoUrl : uri ,
