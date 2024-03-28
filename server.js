@@ -17,7 +17,7 @@ import router from './routes/routes.js'
 
 import {} from 'dotenv/config'
 
-uri =process.env.MONGO_URI
+const uri =process.env.MONGO_URI
 //const express=require('express');
 
 const app=express();
